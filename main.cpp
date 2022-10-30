@@ -258,7 +258,7 @@ class set_of_numbers
         } // Удалить число из массива
 
 
-        set_of_numbers &intersection( const set_of_numbers &set_2 )
+        set_of_numbers &intersection( const set_of_numbers &set_2 ) const
         {
 
             set_of_numbers new_arr( 0 );
@@ -273,36 +273,23 @@ class set_of_numbers
             return new_arr;
         } // Пересечение
 
-
-
-
-
-
-
-
-
-        bool occurrence_of_elements(const set_of_numbers &arr2)
+        bool operator == ( const set_of_numbers &set_2 ) const
         {
-            try
+
+            if( this->count != set_2.count ) return false;
+            for( int i = 0; i < this->count; i++ )
             {
-                this->delete_(number);
-                catch (const char *e)
-                {
-                    throw e;
-                }
-                catch (...)
-                {
-                    throw "Something went wrong";
-                }
+                if( this->array[i] != set_2.array[i] ) return false;
             }
+            return true;
+
+        }
+
+        bool occurrence_of_elements( const set_of_numbers &set_2 ) const
+        {
+            if( ( this->intersection( set_2 ) ) == *this ) return true;
+            return false;
         };
-
-
-
-
-
-
-
 
 };
 
