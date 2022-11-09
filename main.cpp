@@ -26,16 +26,16 @@ int main()
             try
             {
 
-                cout << "Start" << endl << "Введите размерность первого масива: " << endl;
+                cout << "Start" << endl << "Ââåäèòå ðàçìåðíîñòü ïåðâîãî ìàñèâà: " << endl;
                 double size_1;
                 cin >> size_1;
-                if ( double( int( size_1 ) ) != size_1 ) throw "Неверная размерность ";
+                if ( double( int( size_1 ) ) != size_1 ) throw "Íåâåðíàÿ ðàçìåðíîñòü ";
                 set_of_numbers set_3( size_1 );
                 set_1 = set_3;
-                cout << "Введите размерность второго масива: " << endl;
-                int size_2;
+                cout << "Ââåäèòå ðàçìåðíîñòü âòîðîãî ìàñèâà: " << endl;
+                double size_2;
                 cin >> size_2;
-                if ( double( int( size_2 ) ) != size_2 ) throw "Неверная размерность ";
+                if ( double( int( size_2 ) ) != size_2 ) throw "Íåâåðíàÿ ðàçìåðíîñòü ";
                 set_of_numbers set_4( size_2 );
                 set_2 = set_4;
                 break;
@@ -55,11 +55,7 @@ int main()
             }
         }
 
-        cout << endl << "Первое множество: " << endl;
-        set_1.print();
-        cout << "Второе множество: " << endl;
-        set_2.print();
-        cout << endl;
+        cout << endl << "Ïåðâîå ìíîæåñòâî: " << endl << set_1 << endl << "Âòîðîå ìíîæåñòâî: " << endl << set_2 << endl;
 
 
         double choice;
@@ -70,16 +66,16 @@ int main()
              while ( true )
             {
 
-                cout << "1 - получить число по индексу"/**/ << endl << "2 - распечатать множества" << endl << "3 - объединить множества" << endl
-                << "4 - вычесть множество"/**/ << endl << "5 - добавить число во множество"/**/ << endl << "6 - удалить число из множества"/**/ << endl
-                << "7 - вычислить пересечение двух множеств" << endl << "8 - проверить наличие числа во множестве"/**/ << endl
-                << "9 - проверить, что одно множество является подмножеством другого"/**/ << endl << "10 - закончить" << endl << "11 - начать заново" << endl;
+                cout << endl << "1 - ïîëó÷èòü ÷èñëî ïî èíäåêñó"/**/ << endl << "2 - ðàñïå÷àòàòü ìíîæåñòâà" << endl << "3 - îáúåäèíèòü ìíîæåñòâà" << endl
+                << "4 - âû÷åñòü ìíîæåñòâî"/**/ << endl << "5 - äîáàâèòü ÷èñëî âî ìíîæåñòâî"/**/ << endl << "6 - óäàëèòü ÷èñëî èç ìíîæåñòâà"/**/ << endl
+                << "7 - âû÷èñëèòü ïåðåñå÷åíèå äâóõ ìíîæåñòâ" << endl << "8 - ïðîâåðèòü íàëè÷èå ÷èñëà âî ìíîæåñòâå"/**/ << endl
+                << "9 - ïðîâåðèòü, ÷òî îäíî ìíîæåñòâî ÿâëÿåòñÿ ïîäìíîæåñòâîì äðóãîãî"/**/ << endl << "10 - çàêîí÷èòü" << endl << "11 - íà÷àòü çàíîâî" << endl;
                 cin >> choice;
                 if ( choice > 0 && choice < 12 && double( int( choice ) ) == choice )  break; 
                 else
                 {
 
-                    cout << "Неизвестный выбор, попробуйте еще раз" << endl;
+                    cout << "Íåèçâåñòíûé âûáîð, ïîïðîáóéòå åùå ðàç" << endl;
                     continue;
 
                 }
@@ -93,16 +89,16 @@ int main()
                 if ( choice == 1 || choice == 4 || choice == 5 || choice == 6 || choice == 8 || choice == 9 )
                 {
 
-                    while ( true )//Выбор множества для действия
+                    while ( true )//Âûáîð ìíîæåñòâà äëÿ äåéñòâèÿ
                     {
 
                         try
                         {
 
-                            cout << "Выберите множество - 1 или 2: " << endl;
+                            cout << "Âûáåðèòå ìíîæåñòâî - 1 èëè 2: " << endl;
                             cin >> number_of_set;
                             if ( ( number_of_set == 1 || number_of_set == 2 ) && double( int( number_of_set ) ) == number_of_set ) break;
-                            else throw "Выбрано несуществующее множество";
+                            else throw "Âûáðàíî íåñóùåñòâóþùåå ìíîæåñòâî";
 
                         }
                         catch ( const char * e )
@@ -133,21 +129,21 @@ int main()
                                 {
 
                                     double index;
-                                    cout << "Введите индeкс: " << endl;
+                                    cout << "Ââåäèòå èíäeêñ: " << endl;
                                     cin >> index;
-                                    if ( double( int( index ) ) != index ) throw "Неверный индекс";
-                                    cout << "Элемент 1го множества с индексом " << index << " - " << set_1[index - 1] << endl;
+                                    if ( double( int( index ) ) != index ) throw "Íåâåðíûé èíäåêñ";
+                                    cout << "Ýëåìåíò 1ãî ìíîæåñòâà ñ èíäåêñîì " << index << " - " << set_1[index - 1] << endl;
                                     break;
 
                                 }
                                 else
                                 {
 
-                                    int index;
-                                    cout << "Введите индeкс: " << endl;
+                                    double index;
+                                    cout << "Ââåäèòå èíäeêñ: " << endl;
                                     cin >> index;
-                                    if ( double( int( index ) ) != index ) throw "Неверный индекс";
-                                    cout << "Элемент 2го множества с индексом " << index << " - " << set_2[index - 1] << endl;
+                                    if ( double( int( index ) ) != index ) throw "Íåâåðíûé èíäåêñ";
+                                    cout << "Ýëåìåíò 2ãî ìíîæåñòâà ñ èíäåêñîì " << index << " - " << set_2[index - 1] << endl;
                                     break;
 
                                 }
@@ -184,8 +180,7 @@ int main()
                                 {
 
                                     set_of_numbers set_3 = set_1 - set_2;
-                                    cout << "Множество 1 минус множество 2:" << endl;
-                                    set_3.print( );
+                                    cout << "Ìíîæåñòâî " << set_1 << " ìèíóñ ìíîæåñòâî " << set_2 << " : " << endl << set_3 << endl;
                                     break;
 
                                 }
@@ -193,8 +188,7 @@ int main()
                                 {
 
                                     set_of_numbers set_3 = set_2 - set_1;
-                                    cout << "Множество 2 минус множество 1:" << endl;
-                                    set_3.print( );
+                                    cout << "Ìíîæåñòâî " << set_2 << " ìèíóñ ìíîæåñòâî " << set_1 << " : " << endl << set_3 << endl;
                                     break;
 
                                 }
@@ -233,12 +227,11 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Введите целое число: " << endl;
+                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
                                     cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Введено нецелое число";
+                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
                                     set_1 += value;
-                                    cout << "Измененное множество \n";
-                                    set_1.print( );
+                                    cout << "Èçìåíåííîå ìíîæåñòâî:" << endl << set_1 << endl;
                                     break;
 
                                 }
@@ -246,12 +239,11 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Введите целое число: " << endl;
+                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
                                     cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Введено нецелое число";
+                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
                                     set_2 += value;
-                                    cout << "Измененное множество \n";
-                                    set_2.print( );
+                                    cout << "Èçìåíåííîå ìíîæåñòâî:" << endl << set_2 << endl;
                                     break;
 
                                     }
@@ -288,12 +280,11 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Введите целое число: " << endl;
+                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
                                     cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Введено нецелое число";
+                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
                                     set_1 -= value;
-                                    cout << "Измененное множество \n";
-                                    set_1.print( );
+                                    cout << "Èçìåíåííîå ìíîæåñòâî:" << endl << set_1 << endl;
                                     break;
 
                                 }
@@ -301,12 +292,11 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Введите целое число: " << endl;
+                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
                                     cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Введено нецелое число";
+                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
                                     set_2 -= value;
-                                    cout << "Измененное множество \n";
-                                    set_2.print( );
+                                    cout << "Èçìåíåííîå ìíîæåñòâî" << endl << set_2 << endl;
                                     break;
 
                                 }
@@ -343,11 +333,11 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Введите целое число: " << endl;
+                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
                                     cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Введено нецелое число";
-                                    if ( set_1.presence( value ) == -1 ) cout << "Taкого числа нет" << endl;
-                                    else cout << "Taкое число есть" << endl;
+                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
+                                    if ( set_1.presence( value ) == -1 ) cout << "Taêîãî ÷èñëà íåò" << endl;
+                                    else cout << "Taêîå ÷èñëî åñòü" << endl;
                                     break;
 
                                 }
@@ -355,11 +345,11 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Введите целое число: " << endl;
+                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
                                     cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Введено нецелое число";
-                                    if ( set_2.presence( value ) == -1 ) cout << "Taкого числа нет" << endl;
-                                    else cout << "Taкое число есть" << endl;
+                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
+                                    if ( set_2.presence( value ) == -1 ) cout << "Taêîãî ÷èñëà íåò" << endl;
+                                    else cout << "Taêîå ÷èñëî åñòü" << endl;
                                     break;
 
                                 }
@@ -396,16 +386,16 @@ int main()
                                 {
 
                                         
-                                    if ( set_1.occurrence_of_elements( set_2 ) == true ) cout << "Множество 2 содержит все элементы множества 1" << endl;
-                                    else cout << "Множество 2 содержит не все элементы множества 1" << endl;
+                                    if ( set_1.occurrence_of_elements( set_2 ) == true ) cout << "Ìíîæåñòâî " << set_2 << " ñîäåðæèò âñå ýëåìåíòû ìíîæåñòâà " << set_1 << endl;
+                                    else cout << "Ìíîæåñòâî " << set_2 << " ñîäåðæèò íå âñå ýëåìåíòû ìíîæåñòâà " << set_1 << endl;
                                     break;
 
                                 }
                                 else
                                 {
 
-                                    if ( set_2.occurrence_of_elements( set_1 ) == true ) cout << "Множество 1 содержит все элементы множества 2" << endl;
-                                    else cout << "Множество 1 содержит не все элементы множества 2" << endl;
+                                    if ( set_2.occurrence_of_elements( set_1 ) == true ) cout << "Ìíîæåñòâî " << set_1 << " ñîäåðæèò âñå ýëåìåíòû ìíîæåñòâà " << set_2 << endl;
+                                    else cout << "Ìíîæåñòâî " << set_1 << " ñîäåðæèò íå âñå ýëåìåíòû ìíîæåñòâà " << set_2 << endl;
                                     break;
 
                                 }
@@ -439,11 +429,7 @@ int main()
                     if ( choice == 2 )
                     {
 
-                        cout << "Первое множество:" << endl;
-                        set_1.print( );
-                        cout << endl << "Второе множество:" << endl;;
-                        set_2.print( );
-                        cout << endl;
+                        cout << "Ïåðâîå ìíîæåñòâî:" << endl << set_1 << endl << "Âòîðîå ìíîæåñòâî:" << endl << set_2 << endl;
                         break;
 
                     }
@@ -451,12 +437,9 @@ int main()
                     if ( choice == 7 )
                     {
 
-                        cout << "Пересечение множеств \n";
-                        set_1.print( );
-                        set_2.print( );
-                        cout << "Результат: ";
+                        cout << "Ïåðåñå÷åíèå ìíîæåñòâ:" << endl << set_1 << endl << "è" << endl << set_2 << endl << "Ðåçóëüòàò: ";
                         set_of_numbers set_3 = set_1.intersection( set_2 );
-                        set_3.print( );
+                        cout << set_3;
                         break;
 
                     }
@@ -464,12 +447,9 @@ int main()
                     if ( choice == 3 )
                     {
 
-                        cout << "Объединение множеств \n";
-                        set_1.print( );
-                        set_2.print( );
-                        cout << "Результат: ";
+                        cout << "Îáúåäèíåíèå ìíîæåñòâ:" << endl << set_1 << endl << "è" << endl << set_2 << endl << "Ðåçóëüòàò: ";
                         set_of_numbers set_3 = set_1 + set_2;
-                        set_3.print( );
+                        cout << set_3;
                         break;
 
                     }

@@ -27,20 +27,20 @@ int set_of_numbers::presence ( const int& number ) const
         }
         return -1;
 
-} // Проверка наличия
+} // Ïðîâåðêà íàëè÷èÿ
 
 int & set_of_numbers::operator [] ( const int& index ) const
 {
 
-    if ( index > count - 1 || index < 0 ) throw "Неверный индекс\n";
+    if ( index > count - 1 || index < 0 ) throw "Íåâåðíûé èíäåêñ\n";
     return array[index];
 
-} // Обращение по индексу
+} // Îáðàùåíèå ïî èíäåêñó
 
 set_of_numbers::set_of_numbers ( int size )
 {
             
-    if ( size < 0 ) throw "Размерность не может быть отрицательной";
+    if ( size < 0 ) throw "Ðàçìåðíîñòü íå ìîæåò áûòü îòðèöàòåëüíîé";
     this->size = size;
     count = 0;
     array = new int[size];
@@ -51,18 +51,18 @@ set_of_numbers::set_of_numbers ( int size )
         {
 
             double number;
-            cout << "Введите целое число: ";
+            cout << "Ââåäèòå öåëîå ÷èñëî: ";
             cin >> number;
             if ( double( int( number ) ) != number )
             {
 
-                cout << "Число " << number << " не целое" << endl;
+                cout << "×èñëî " << number << " íå öåëîå" << endl;
 
             }
             else if ( this->presence( number ) != -1 )
             {
 
-                cout << "Число " << number << " не уникальное" << endl;
+                cout << "×èñëî " << number << " íå óíèêàëüíîå" << endl;
 
             }
             else
@@ -78,7 +78,7 @@ set_of_numbers::set_of_numbers ( int size )
 
     }
 
-} // Конструктор
+} // Êîíñòðóêòîð
 
 set_of_numbers::set_of_numbers ( const set_of_numbers & other_set )
 {
@@ -113,8 +113,8 @@ void set_of_numbers::operator = ( const set_of_numbers & other_set )
 void set_of_numbers::add ( const int & number )
 {
 
-    if ( this->presence( number ) != -1 ) throw "Введенное число не уникальное\n";
-    else if ( double( int( number ) ) != number ) throw "Введенное число не целое\n";
+    if ( this->presence( number ) != -1 ) throw "Ââåäåííîå ÷èñëî íå óíèêàëüíîå\n";
+    else if ( double( int( number ) ) != number ) throw "Ââåäåííîå ÷èñëî íå öåëîå\n";
     if ( this->count == this->size )
     {
 
@@ -140,7 +140,7 @@ void set_of_numbers::add ( const int & number )
 
     else this->array[count++] = number;
 
-} // Добавление числа в массив
+} // Äîáàâëåíèå ÷èñëà â ìàññèâ
 
 void set_of_numbers::delete_ ( const int& number )
 {
@@ -173,30 +173,11 @@ void set_of_numbers::delete_ ( const int& number )
         this->count--;
 
     }
-    else throw "Такого числа нет\n";
+    else throw "Òàêîãî ÷èñëà íåò\n";
 
-} // Удаление числа из массива
+} // Óäàëåíèå ÷èñëà èç ìàññèâà
 
-void set_of_numbers::print( ) const
-{
-
-    if ( this->count == 0 ) cout << "Пустое множество" << endl;
-    else
-    {
-
-        for ( int i = 0; i < count; i++ )
-        {
-
-            cout << array[i] << " ";
-
-        }
-        cout << endl;
-
-    }
-
-}
-
-set_of_numbers & set_of_numbers::operator + ( const set_of_numbers & set_1 )
+set_of_numbers set_of_numbers::operator + ( const set_of_numbers& set_1 )
 {
 
     set_of_numbers new_set( 0 );
@@ -222,9 +203,9 @@ set_of_numbers & set_of_numbers::operator + ( const set_of_numbers & set_1 )
     }
     return new_set;
 
-} // Сложение двух массивов
+} // Ñëîæåíèå äâóõ ìàññèâîâ
 
-set_of_numbers & set_of_numbers::operator - ( const set_of_numbers & set_1 )
+set_of_numbers set_of_numbers::operator - ( const set_of_numbers & set_1 )
 {
 
     set_of_numbers new_set( 0 );
@@ -250,12 +231,11 @@ set_of_numbers & set_of_numbers::operator - ( const set_of_numbers & set_1 )
             throw "Something went wrong\n";
 
         }
-        new_set.print( );
 
     }
     return new_set;
             
-} // Вычитание двух массивов
+} // Âû÷èòàíèå äâóõ ìàññèâîâ
 
 void set_of_numbers::operator + ( const int & number )
 {
@@ -269,7 +249,7 @@ void set_of_numbers::operator + ( const int & number )
     catch ( const char * e )
     {
 
-        throw "Такое число уже есть\n";
+        throw "Òàêîå ÷èñëî óæå åñòü\n";
 
     }
     catch ( ... )
@@ -279,7 +259,7 @@ void set_of_numbers::operator + ( const int & number )
 
     }
 
-} // Прибавить число в массив
+} // Ïðèáàâèòü ÷èñëî â ìàññèâ
 
 void set_of_numbers::operator += ( const int & number )
 {
@@ -293,7 +273,7 @@ void set_of_numbers::operator += ( const int & number )
     catch ( const char * e )
     {
 
-        throw "Такое число уже есть\n";
+        throw "Òàêîå ÷èñëî óæå åñòü\n";
 
     }
     catch ( ... )
@@ -303,7 +283,7 @@ void set_of_numbers::operator += ( const int & number )
 
     }
 
-} // Прибавить число в массив
+} // Ïðèáàâèòü ÷èñëî â ìàññèâ
 
 void set_of_numbers::operator - ( const int & number )
 {
@@ -327,7 +307,7 @@ void set_of_numbers::operator - ( const int & number )
 
     }
 
-} // Удалить число из массива
+} // Óäàëèòü ÷èñëî èç ìàññèâà
 
 void set_of_numbers::operator -= ( const int & number )
 {
@@ -351,9 +331,9 @@ void set_of_numbers::operator -= ( const int & number )
 
     }
 
-} // Удалить число из массива
+} // Óäàëèòü ÷èñëî èç ìàññèâà
 
-set_of_numbers & set_of_numbers::intersection ( const set_of_numbers & set_2 ) const
+set_of_numbers set_of_numbers::intersection ( const set_of_numbers & set_2 ) const
 {
 
     set_of_numbers new_arr( 0 );
@@ -365,7 +345,7 @@ set_of_numbers & set_of_numbers::intersection ( const set_of_numbers & set_2 ) c
     }
     return new_arr;
 
-} // Пересечение
+} // Ïåðåñå÷åíèå
 
 bool set_of_numbers::operator == ( const set_of_numbers & set_2 ) const
 {
@@ -407,3 +387,16 @@ bool set_of_numbers::occurrence_of_elements( const set_of_numbers & set_2 ) cons
     return true;
 
 };
+
+ostream& operator << (ostream& os, const set_of_numbers& set)
+{
+
+    for ( int i = 0; i < set.count; i++ )
+    {
+
+        os << set.array[i] << " ";
+
+    }
+    return os;
+
+}
