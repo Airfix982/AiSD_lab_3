@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+//#include <windows.h>
 #include <locale.h>
 #include <string.h>
 #include <cmath>
@@ -11,8 +11,8 @@ using namespace std;
 
 int main()
 {
-    SetConsoleCP( 1251 );
-    SetConsoleOutputCP( 1251 );
+    //SetConsoleCP( 1251 );
+    //SetConsoleOutputCP( 1251 );
     while ( true )
     {
 
@@ -26,16 +26,30 @@ int main()
             try
             {
 
-                cout << "Start" << endl << "Ââåäèòå ðàçìåðíîñòü ïåðâîãî ìàñèâà: " << endl;
+                cout << "Start" << endl << "Enter the first set size: " << endl;
                 double size_1;
-                cin >> size_1;
-                if ( double( int( size_1 ) ) != size_1 ) throw "Íåâåðíàÿ ðàçìåðíîñòü ";
+                while( !( cin >> size_1 ) || ( cin.peek() != '\n' ) )
+                {
+
+                    cin.clear();
+                    while ( cin.get() != '\n' );
+                    throw "Text was entered";
+
+                }
+                if ( double( int( size_1 ) ) != size_1 ) throw "wrong size ";
                 set_of_numbers set_3( size_1 );
                 set_1 = set_3;
-                cout << "Ââåäèòå ðàçìåðíîñòü âòîðîãî ìàñèâà: " << endl;
+                cout << "Enter the first set size: " << endl;
                 double size_2;
-                cin >> size_2;
-                if ( double( int( size_2 ) ) != size_2 ) throw "Íåâåðíàÿ ðàçìåðíîñòü ";
+                while( !( cin >> size_2 ) || ( cin.peek() != '\n' ) )
+                {
+
+                    cin.clear();
+                    while ( cin.get() != '\n' );
+                    throw "Text was entered";
+
+                }
+                if ( double( int( size_2 ) ) != size_2 ) throw "wrong size ";
                 set_of_numbers set_4( size_2 );
                 set_2 = set_4;
                 break;
@@ -55,7 +69,7 @@ int main()
             }
         }
 
-        cout << endl << "Ïåðâîå ìíîæåñòâî: " << endl << set_1 << endl << "Âòîðîå ìíîæåñòâî: " << endl << set_2 << endl;
+        cout << endl << "First set: " << endl << set_1 << endl << "Second set: " << endl << set_2 << endl;
 
 
         double choice;
@@ -66,16 +80,24 @@ int main()
              while ( true )
             {
 
-                cout << endl << "1 - ïîëó÷èòü ÷èñëî ïî èíäåêñó"/**/ << endl << "2 - ðàñïå÷àòàòü ìíîæåñòâà" << endl << "3 - îáúåäèíèòü ìíîæåñòâà" << endl
-                << "4 - âû÷åñòü ìíîæåñòâî"/**/ << endl << "5 - äîáàâèòü ÷èñëî âî ìíîæåñòâî"/**/ << endl << "6 - óäàëèòü ÷èñëî èç ìíîæåñòâà"/**/ << endl
-                << "7 - âû÷èñëèòü ïåðåñå÷åíèå äâóõ ìíîæåñòâ" << endl << "8 - ïðîâåðèòü íàëè÷èå ÷èñëà âî ìíîæåñòâå"/**/ << endl
-                << "9 - ïðîâåðèòü, ÷òî îäíî ìíîæåñòâî ÿâëÿåòñÿ ïîäìíîæåñòâîì äðóãîãî"/**/ << endl << "10 - çàêîí÷èòü" << endl << "11 - íà÷àòü çàíîâî" << endl;
-                cin >> choice;
+                cout << endl << "1 - get the value by index"/**/ << endl << "2 - print the sets" << endl << "3 - unite sets" << endl
+                << "4 - subtract a set"/**/ << endl << "5 - add a number into a set"/**/ << endl << "6 - delete a number from a set"/**/ << endl
+                << "7 - get intersection" << endl << "8 - check presense of a number into a set"/**/ << endl
+                << "9 - check occurence of elements"/**/ << endl << "10 - stop" << endl << "11 - start again" << endl;
+                while( !( cin >> choice ) || ( cin.peek() != '\n' ) )
+                {
+
+                    cin.clear();
+                    while ( cin.get() != '\n' );
+                    cout << "Text was entered";
+                    continue;
+
+                }
                 if ( choice > 0 && choice < 12 && double( int( choice ) ) == choice )  break; 
                 else
                 {
 
-                    cout << "Íåèçâåñòíûé âûáîð, ïîïðîáóéòå åùå ðàç" << endl;
+                    cout << "Unknown choice, try again" << endl;
                     continue;
 
                 }
@@ -95,10 +117,17 @@ int main()
                         try
                         {
 
-                            cout << "Âûáåðèòå ìíîæåñòâî - 1 èëè 2: " << endl;
-                            cin >> number_of_set;
+                            cout << "choice a set - 1 or 2: " << endl;
+                            while( !( cin >> number_of_set ) || ( cin.peek() != '\n' ) )
+                            {
+
+                                cin.clear();
+                                while ( cin.get() != '\n' );
+                                throw "Text was entered";
+
+                            } 
                             if ( ( number_of_set == 1 || number_of_set == 2 ) && double( int( number_of_set ) ) == number_of_set ) break;
-                            else throw "Âûáðàíî íåñóùåñòâóþùåå ìíîæåñòâî";
+                            else throw "Non-existent set was choosen";
 
                         }
                         catch ( const char * e )
@@ -129,10 +158,17 @@ int main()
                                 {
 
                                     double index;
-                                    cout << "Ââåäèòå èíäeêñ: " << endl;
-                                    cin >> index;
-                                    if ( double( int( index ) ) != index ) throw "Íåâåðíûé èíäåêñ";
-                                    cout << "Ýëåìåíò 1ãî ìíîæåñòâà ñ èíäåêñîì " << index << " - " << set_1[index - 1] << endl;
+                                    cout << "Enter index: " << endl;
+                                    while( !( cin >> index ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( index ) ) != index ) throw "Not correct index";
+                                    cout << "An element of the first set with index " << index << " - " << set_1[index - 1] << endl;
                                     break;
 
                                 }
@@ -140,10 +176,17 @@ int main()
                                 {
 
                                     double index;
-                                    cout << "Ââåäèòå èíäeêñ: " << endl;
-                                    cin >> index;
-                                    if ( double( int( index ) ) != index ) throw "Íåâåðíûé èíäåêñ";
-                                    cout << "Ýëåìåíò 2ãî ìíîæåñòâà ñ èíäåêñîì " << index << " - " << set_2[index - 1] << endl;
+                                    cout << "Enter index: " << endl;
+                                    while( !( cin >> index ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( index ) ) != index ) throw "Not correct index";
+                                    cout << "An element of the second set with index " << index << " - " << set_2[index - 1] << endl;
                                     break;
 
                                 }
@@ -180,7 +223,7 @@ int main()
                                 {
 
                                     set_of_numbers set_3 = set_1 - set_2;
-                                    cout << "Ìíîæåñòâî " << set_1 << " ìèíóñ ìíîæåñòâî " << set_2 << " : " << endl << set_3 << endl;
+                                    cout << "Set " << set_1 << " minus set " << set_2 << " : " << endl << set_3 << endl;
                                     break;
 
                                 }
@@ -188,7 +231,7 @@ int main()
                                 {
 
                                     set_of_numbers set_3 = set_2 - set_1;
-                                    cout << "Ìíîæåñòâî " << set_2 << " ìèíóñ ìíîæåñòâî " << set_1 << " : " << endl << set_3 << endl;
+                                    cout << "Set " << set_2 << " minus set " << set_1 << " : " << endl << set_3 << endl;
                                     break;
 
                                 }
@@ -227,11 +270,18 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
-                                    cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
+                                    cout << "Enter integer: " << endl;
+                                    while( !( cin >> value ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( value ) ) != value ) throw "Not integer was entered";
                                     set_1 += value;
-                                    cout << "Èçìåíåííîå ìíîæåñòâî:" << endl << set_1 << endl;
+                                    cout << "Changed set:" << endl << set_1 << endl;
                                     break;
 
                                 }
@@ -239,11 +289,18 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
-                                    cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
+                                    cout << "Enter integer: " << endl;
+                                    while( !( cin >> value ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( value ) ) != value ) throw "Not integer was entered";
                                     set_2 += value;
-                                    cout << "Èçìåíåííîå ìíîæåñòâî:" << endl << set_2 << endl;
+                                    cout << "Changed set:" << endl << set_2 << endl;
                                     break;
 
                                     }
@@ -280,11 +337,18 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
-                                    cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
+                                    cout << "Enter integer: " << endl;
+                                    while( !( cin >> value ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( value ) ) != value ) throw "Not integer was entered";
                                     set_1 -= value;
-                                    cout << "Èçìåíåííîå ìíîæåñòâî:" << endl << set_1 << endl;
+                                    cout << "Changed set:" << endl << set_1 << endl;
                                     break;
 
                                 }
@@ -292,11 +356,18 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
-                                    cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
+                                    cout << "Enter integer: " << endl;
+                                    while( !( cin >> value ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( value ) ) != value ) throw "Not integer was entered";
                                     set_2 -= value;
-                                    cout << "Èçìåíåííîå ìíîæåñòâî" << endl << set_2 << endl;
+                                    cout << "Changed set" << endl << set_2 << endl;
                                     break;
 
                                 }
@@ -333,11 +404,18 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
-                                    cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
-                                    if ( set_1.presence( value ) == -1 ) cout << "Taêîãî ÷èñëà íåò" << endl;
-                                    else cout << "Taêîå ÷èñëî åñòü" << endl;
+                                    cout << "Enter integer: " << endl;
+                                    while( !( cin >> value ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( value ) ) != value ) throw "Not integer was entered";
+                                    if ( set_1.presence( value ) == -1 ) cout << "The set doesn't have such a value" << endl;
+                                    else cout << "The set has such a value" << endl;
                                     break;
 
                                 }
@@ -345,11 +423,18 @@ int main()
                                 {
 
                                     double value;
-                                    cout << "Ââåäèòå öåëîå ÷èñëî: " << endl;
-                                    cin >> value;
-                                    if ( double( int( value ) ) != value ) throw "Ââåäåíî íåöåëîå ÷èñëî";
-                                    if ( set_2.presence( value ) == -1 ) cout << "Taêîãî ÷èñëà íåò" << endl;
-                                    else cout << "Taêîå ÷èñëî åñòü" << endl;
+                                    cout << "Enter integer: " << endl;
+                                    while( !( cin >> value ) || ( cin.peek() != '\n' ) )
+                                    {
+
+                                        cin.clear();
+                                        while ( cin.get() != '\n' );
+                                        throw "Text was entered";
+
+                                    } 
+                                    if ( double( int( value ) ) != value ) throw "Not integer was entered";
+                                    if ( set_2.presence( value ) == -1 ) cout << "The set doesn't have such a value" << endl;
+                                    else cout << "The set has such a value" << endl;
                                     break;
 
                                 }
@@ -386,16 +471,16 @@ int main()
                                 {
 
                                         
-                                    if ( set_1.occurrence_of_elements( set_2 ) == true ) cout << "Ìíîæåñòâî " << set_2 << " ñîäåðæèò âñå ýëåìåíòû ìíîæåñòâà " << set_1 << endl;
-                                    else cout << "Ìíîæåñòâî " << set_2 << " ñîäåðæèò íå âñå ýëåìåíòû ìíîæåñòâà " << set_1 << endl;
+                                    if ( set_1.occurrence_of_elements( set_2 ) == true ) cout << "Set " << set_2 << " contains all the elements of set " << set_1 << endl;
+                                    else cout << "Set " << set_2 << " doesn't contain all the elements of set " << set_1 << endl;
                                     break;
 
                                 }
                                 else
                                 {
 
-                                    if ( set_2.occurrence_of_elements( set_1 ) == true ) cout << "Ìíîæåñòâî " << set_1 << " ñîäåðæèò âñå ýëåìåíòû ìíîæåñòâà " << set_2 << endl;
-                                    else cout << "Ìíîæåñòâî " << set_1 << " ñîäåðæèò íå âñå ýëåìåíòû ìíîæåñòâà " << set_2 << endl;
+                                    if ( set_2.occurrence_of_elements( set_1 ) == true ) cout << "Set " << set_1 << " contains all the elements of set " << set_2 << endl;
+                                    else cout << "Set " << set_1 << " doesn't contain all the elements of set " << set_2 << endl;
                                     break;
 
                                 }
@@ -429,7 +514,7 @@ int main()
                     if ( choice == 2 )
                     {
 
-                        cout << "Ïåðâîå ìíîæåñòâî:" << endl << set_1 << endl << "Âòîðîå ìíîæåñòâî:" << endl << set_2 << endl;
+                        cout << "First set:" << endl << set_1 << endl << "Second set:" << endl << set_2 << endl;
                         break;
 
                     }
@@ -437,7 +522,7 @@ int main()
                     if ( choice == 7 )
                     {
 
-                        cout << "Ïåðåñå÷åíèå ìíîæåñòâ:" << endl << set_1 << endl << "è" << endl << set_2 << endl << "Ðåçóëüòàò: ";
+                        cout << "The intersection of  sets" << endl << set_1 << endl << "and" << endl << set_2 << endl << "The result: ";
                         set_of_numbers set_3 = set_1.intersection( set_2 );
                         cout << set_3;
                         break;
@@ -447,7 +532,7 @@ int main()
                     if ( choice == 3 )
                     {
 
-                        cout << "Îáúåäèíåíèå ìíîæåñòâ:" << endl << set_1 << endl << "è" << endl << set_2 << endl << "Ðåçóëüòàò: ";
+                        cout << "THe union of sets" << endl << set_1 << endl << "and" << endl << set_2 << endl << "The result: ";
                         set_of_numbers set_3 = set_1 + set_2;
                         cout << set_3;
                         break;

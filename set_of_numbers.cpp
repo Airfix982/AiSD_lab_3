@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+//#include <windows.h>
 #include <locale.h>
 #include <string.h>
 #include <cmath>
@@ -32,7 +32,7 @@ int set_of_numbers::presence ( const int& number ) const
 int & set_of_numbers::operator [] ( const int& index ) const
 {
 
-    if ( index > count - 1 || index < 0 ) throw "Íåâåðíûé èíäåêñ\n";
+    if ( index > count - 1 || index < 0 ) throw "Not correct index\n";
     return array[index];
 
 } // Îáðàùåíèå ïî èíäåêñó
@@ -40,7 +40,7 @@ int & set_of_numbers::operator [] ( const int& index ) const
 set_of_numbers::set_of_numbers ( int size )
 {
             
-    if ( size < 0 ) throw "Ðàçìåðíîñòü íå ìîæåò áûòü îòðèöàòåëüíîé";
+    if ( size < 0 ) throw "Size can't be negative";
     this->size = size;
     count = 0;
     array = new int[size];
@@ -51,18 +51,25 @@ set_of_numbers::set_of_numbers ( int size )
         {
 
             double number;
-            cout << "Ââåäèòå öåëîå ÷èñëî: ";
-            cin >> number;
+            cout << "Enter integer: ";
+            while( !( cin >> number ) || ( cin.peek() != '\n' ) )
+            {
+
+                cin.clear();
+                while ( cin.get() != '\n' );
+                cout << "Text was entered";
+
+            } 
             if ( double( int( number ) ) != number )
             {
 
-                cout << "×èñëî " << number << " íå öåëîå" << endl;
+                cout << "The number " << number << " isn't integer" << endl;
 
             }
             else if ( this->presence( number ) != -1 )
             {
 
-                cout << "×èñëî " << number << " íå óíèêàëüíîå" << endl;
+                cout << "The number " << number << " isn't unic" << endl;
 
             }
             else
@@ -113,8 +120,8 @@ void set_of_numbers::operator = ( const set_of_numbers & other_set )
 void set_of_numbers::add ( const int & number )
 {
 
-    if ( this->presence( number ) != -1 ) throw "Ââåäåííîå ÷èñëî íå óíèêàëüíîå\n";
-    else if ( double( int( number ) ) != number ) throw "Ââåäåííîå ÷èñëî íå öåëîå\n";
+    if ( this->presence( number ) != -1 ) throw "The number isn't unic\n";
+    else if ( double( int( number ) ) != number ) throw "The number isn't integer\n";
     if ( this->count == this->size )
     {
 
@@ -173,7 +180,7 @@ void set_of_numbers::delete_ ( const int& number )
         this->count--;
 
     }
-    else throw "Òàêîãî ÷èñëà íåò\n";
+    else throw "The set doesn't contain such a number\n";
 
 } // Óäàëåíèå ÷èñëà èç ìàññèâà
 
@@ -249,7 +256,7 @@ void set_of_numbers::operator + ( const int & number )
     catch ( const char * e )
     {
 
-        throw "Òàêîå ÷èñëî óæå åñòü\n";
+        throw "The set already contains such a value\n";
 
     }
     catch ( ... )
@@ -273,7 +280,7 @@ void set_of_numbers::operator += ( const int & number )
     catch ( const char * e )
     {
 
-        throw "Òàêîå ÷èñëî óæå åñòü\n";
+        throw "The set already contains such a value\n";
 
     }
     catch ( ... )
