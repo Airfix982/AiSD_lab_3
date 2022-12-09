@@ -2344,7 +2344,7 @@ int main()
                                             else cout << "The set has such a value" << endl;
                                             break;
 
-                                        }
+                                        } 
 
                                     }
                                     catch (const char* e)

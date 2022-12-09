@@ -47,7 +47,7 @@ public:
     void operator - (const T& number);
 
     void operator -= (const T& number);
- 
+  
     set_of_numbers intersection(const set_of_numbers<T>& set_2) const;
 
     bool operator == (const set_of_numbers<T>& set_2) const;

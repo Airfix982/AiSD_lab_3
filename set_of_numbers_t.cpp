@@ -405,7 +405,7 @@ ostream& operator << (ostream& os, const set_of_numbers<string>& set)
 
         os << set.array[i] << " ";
  
-    }
+    } 
     return os;
 
 }
